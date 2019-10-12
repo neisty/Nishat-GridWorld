@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title> Grid World Execution </title>
+  
+ 
+  <script src="acorn.js"></script>
+  <script src="interpreter.js"></script>
+  <script src="../blockly_compressed.js"></script>
+  <script src="../blocks_compressed.js"></script>
+  <script src="../javascript_compressed.js"></script>
+  <script src="../msg/js/en.js"></script>
+  <script type="text/javascript" src="maze.js"></script>
+  
+  <script src="blocks.js"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="storage.js"></script>
+  <script src="lib-interface.js"></script>
+  <script src="BlocklyGames.js"></script>
+  <script src="js-blocks.js"></script>
+  <script src="lib-dialogs.js"></script>
+
+  
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: bold;
+      font-size: 100%; 
+      position : center; 
+    }
+    
+  </style>
+
+<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+<link rel="stylesheet" href="styles/index.css">
+
+
+</head>
+<body >
+    <header class="mdl-color--cyan-500">
+      <h1 class="header">Grid World</h1>
+    </header>
+
+    <main>
+        
+      <!--Defining grid-->
+      <!-- <div id="maze-grid" class="maze-grid"> -->
+        <div id="maze_container">
+          <!-- insert the maze HTML code here -->
+          
+          <div id="maze" data-steps="10">
+          
+           <div><div id="cell" class="door entrance"> </div><div id="cell" > </div> <div id="cell"> </div> <div id="cell"> </div> <div id="cell"> </div></div> 
+           <div><div id="cell"> </div><div id="cell"> </div> <div id="cell"> </div> <div id="cell" class="apple"> </div> <div id="cell"> </div></div>
+           <div><div id="cell"> </div><div id="cell" class="apple"> </div> <div id="cell" class="fire"> </div> <div id="cell"> </div> <div id="cell" class="water"> </div></div>
+           <div><div id="cell" class="fire"> </div><div id="cell" > </div> <div id="cell" > </div> <div id="cell" > </div> <div id="cell"> </div></div>
+           <div><div id="cell"> </div><div id="cell" > </div> <div id="cell" class="apple"> </div> <div id="cell" class="monster"> </div> <div id="cell" class="castle"> </div></div>
+          </div>
+        
+          
+          <div id="maze_output">
+          <div id="maze_score"><!-- --></div>
+          <div id="maze_message"><!-- --></div>
+          </div>
+          
+         
+
+
+      </div>
+     
+      <div class="button">
+        <button onclick="exec()" id="runButton">Run Program</button>  
+        
+        
+      </div>
+<!--
+        <div class="button">
+            <button  onclick="runCode()" id="runButton">Run Code</button>  
+            <input class="styled" type="button" value="Start Speech" id="myButton1" onclick ="stopSpeech()"></input> 
+
+            
+            
+          </div>
+        -->     
+
+    <!--Defining Blocks -->
+     
+         <div class="blockly-editor">
+           <div id="blockly-div" style="display: inline-block; height: 500px; width: 760px;">      
+        </div>
+
+  <xml id="toolbox" style="display: none">
+   
+
+    
+      <block type="maze_moveForward" id="moveF"></block>   
+      <block type="maze_turn" id=""></block>
+      <block type="maze_if" id=""></block>
+      <block type="maze_ifElse" id=""></block>
+      <block type="maze_forever" id=""></block>
+      <!-- <block type="say_array" id="display array"></block> --> 
+
+      
+    
+    
+    
+    
+    <!--=<category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
+    </category> -->
+  </xml>
+  <xml id="startBlocks" style="display: none"></xml>
+ 
+
+
+
+  <script>
+
+exec =function(){
+printHelo();
+};
+
+
+window.addEventListener("DOMContentLoaded", function(e) {
+    var maze = new Maze();
+/*  maze.setChildMode(); */
+  }, false);
+
+
+BlocklyGames.workspace = Blockly.inject('blockly-div',
+        {media: '../media/',
+         toolbox: document.getElementById('toolbox'),
+         grid:
+             {spacing: 25,
+              length: 3,
+              colour: '#ccc',
+              snap: true},
+              scrollbars: true,
+              zoom:
+             {controls: true,
+              wheel: true,
+              startScale: 1.0,
+              maxScale: 4,
+              minScale: .25,
+              scaleSpeed: 1.1
+             },'trashcan': true, 
+         });
+    Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
+    BlocklyGames.workspace);
+
+    // Exit is used to signal the end of a script.
+    Blockly.JavaScript.addReservedWords('exit');
+
+    
+  
+
+
+
+  
+
+
+
+
+  
+    
+
+      
+  </script>
+  
+ 
+</body>
+</html>
